@@ -1,0 +1,48 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="card">
+    <h4 class="card-header">
+        Add patient ({{data.count}})
+        <a href="{% url 'add_patient' %}" class="float-end btn btn-sm btn-success"><i class="fa-solid fa-plus"></i>Add Patient</a>
+    </h4>
+    <div class="card-body">
+        <table class="table table-sm table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Datial</th>
+                    <th>Medicine</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                    {% for row in data %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{row.added_time|date:'d-m-Y'}}</td>
+                            <td>{{row.name}}</td>
+                            <td>{{row.email}}</td>
+                            <td>{{row.age}}</td>
+                            <td>{{row.gender}}</td>
+                            <td>{{row.detail}}</td>
+                            <td>{{row.medicine_detail}}</td>
+                            <td>{{row.amount}}</td>
+                            <td>
+                                <a href="{% url 'update_patient' row.id %}" class="text-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{% url 'delete_patient' row.id %}" onclick="return confirm('Are you sure want to delete')" class="text-danger"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

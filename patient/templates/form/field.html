@@ -1,0 +1,9 @@
+<label for="id_{{field.name}}" class="col-sm-2 col-form-label">
+    {{field.label_tag}}
+    {% if field.field.required %}
+    <span class="text-danger"></span>
+    {% endif %}
+</label>
+<div class="col-sm-10">
+    {{field}}
+</div>

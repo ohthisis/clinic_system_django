@@ -1,0 +1,37 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="card">
+    <h5 class="card-header bg-success text-white bg-gradient">Add Patoient Visit</h5>
+    <div class="card-body">
+        {% if form.errors %}
+            {% for field ini form %}
+                {% for error in field.erroes %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+                {%for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+        {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+        {% endif %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3 row">
+                    {% inculde 'form/field.html' with field=field %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
