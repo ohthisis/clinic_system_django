@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +135,7 @@ EMAIL_PORT=587
 EMAIL_HOST_USER='naing312707782@gmail.com'
 EMAIL_HOST_PASSWORD='pxcj hgwj dqqz wicm'
 EMAIL_USE_TLS = True
+
+CRONJOBS = [
+    ('* * * * *',' patient.tests.send_next_visit_email_notification','>> /tmp/scheduled_job.log')
+]

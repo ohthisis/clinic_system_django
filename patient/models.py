@@ -16,10 +16,13 @@ class Patient(models.Model):
     gender=models.CharField(choices=GENDER_CHOICES,default='male')
     mobile=models.IntegerField(null=True)
     address=models.TextField(null=True)
+    added_time=models.DateTimeField(auto_now_add=True,null=True)
+
+class Visit(models.Model):
+    patient=models.ForeignKey(Patient,on_delete=models.CASCADE)
     detail=models.TextField(null=True)
     medicine_detail=models.TextField(null=True)
     note=models.TextField(null=True)
-    amount=models.DecimalField(max_digits=10,decimal_places =2,default=0)
     next_visit=models.IntegerField(default=0)
+    amount=models.DecimalField(max_digits=10,decimal_places =2,default=0)
     visit_date=models.DateField(default=date.today(),null=True)
-    added_time=models.DateTimeField(auto_now_add=True,null=True)

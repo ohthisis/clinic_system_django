@@ -1,5 +1,25 @@
 {% extends 'dashboard.html' %}
 {% block content %}
 
+<div class="row">
+    <div class="col-4">
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h5>Total Patients</h5>
+                <hr/>
+                <h4><a href="{% url 'all_patients' %}" class="text-decoration-none">{{totalPatients}}</a></h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h5>Total Collection</h5>
+                <hr/>
+                <h4><a href="{% url 'collection_reports' %}" class="text-decoration-none">{{totalCollection.total}} ks</a></h4>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

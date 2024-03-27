@@ -23,6 +23,12 @@
                         active {% endif %}">Manage Patient</a>
                         <a href="{% url 'doctor_logout' %}" class="list-group-item text-danger list-group-item-action">Logout</a>
                     </div>
+                    <div class="list-group mt-5">
+                        <a href="{% url 'reports' %}" class="list-group-item list-group-item-action {% if 'reports' in request.path %}
+                        active {% endif %}">Total Patients Reports</a>
+                        <a href="{% url 'collection_reports' %}" class="list-group-item list-group-item-action {% if 'collection-report' in request.path %}
+                        active {% endif %}">Collection Reports</a>
+                    </div>
                 </div>
                 <div class="col-9">
                     {% block content%}

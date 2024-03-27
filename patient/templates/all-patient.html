@@ -6,17 +6,15 @@
         <a href="{% url 'add_patient' %}" class="float-end btn btn-sm btn-success"><i class="fa-solid fa-plus"></i>Add Patient</a>
     </h4>
     <div class="card-body">
-        <table class="table table-sm table-bordered table-hover">
+        <table class="table table-sm table-bordered table-hover" id="dataTable">
             <thead>
                 <tr>
                     <th>Sr.no</th>
                     <th>Date</th>
                     <th>Name</th>
+                    <th>Visit</th>
                     <th>Email</th>
                     <th>Age</th>
-                    <th>Gender</th>
-                    <th>Datial</th>
-                    <th>Medicine</th>
                     <th>Amount</th>
                     <th>Action</th>
                 </tr>
@@ -28,11 +26,9 @@
                             <td>{{forloop.counter}}</td>
                             <td>{{row.added_time|date:'d-m-Y'}}</td>
                             <td>{{row.name}}</td>
+                            <td><a href="{% url 'add_visit' row.id %}" class="btn btn-primary btn-sm">Add visit</a></td>
                             <td>{{row.email}}</td>
                             <td>{{row.age}}</td>
-                            <td>{{row.gender}}</td>
-                            <td>{{row.detail}}</td>
-                            <td>{{row.medicine_detail}}</td>
                             <td>{{row.amount}}</td>
                             <td>
                                 <a href="{% url 'update_patient' row.id %}" class="text-info"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -45,4 +41,35 @@
         </table>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css">
+<script>
+    new DataTable('#dataTable',{
+        layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+    });
+</script>
 {% endblock %}
+
+
