@@ -1,5 +1,6 @@
 import environ
 from pathlib import Path
+import os
 
 env=environ.Env(
     DEBUG=(bool,False)
@@ -19,7 +20,7 @@ SECRET_KEY = env('SECRECT_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -74,8 +75,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_system',
         'USER': 'postgres',
-        'PASSWORD':'toor',
-        'HOST':'localhost',
+        'PASSWORD':'LVebciINETVrpmkbVGvUGbsoEoMHVTaf',
+        'HOST':'monorail.proxy.rlwy.net',
+        'PORT':'38402',
+        
     }
 }
 
@@ -120,6 +123,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 LOGIN_REFIRECT_URL='home'
 
